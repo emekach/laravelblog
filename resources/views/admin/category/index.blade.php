@@ -23,13 +23,15 @@
                         <th>Category Name</th>
                         <th>Image</th>
                         <th>Status</th>
-                        <th>Edit</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @if($category->isEmpty())
-                    <p>No category found</p>
+                    <tr>
+                        <td colspan="5">No category found</td>
+                    </tr>
                     @else
 
                     @foreach($category as $item)
@@ -40,7 +42,9 @@
 
                         <td>{{$item->status == '1' ? 'Hidden': 'Shown' }}</td>
                         <td>
-                            <a href="" class="btn btn-success">Edit</a>
+                            <a href="{{route('admin.edit_category',['category_id'=>$item->id])}}" class="btn btn-success">Edit</a>
+
+                            <a href="{{route('admin.delete_category',['category_id'=>$item->id])}}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     @endforeach

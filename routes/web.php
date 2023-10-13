@@ -26,6 +26,12 @@ Route::prefix('/admin')->group(function () {
     Route::get('category', [CategoryController::class, 'Index'])->middleware('admin')->name('admin.view_category');
     Route::get('add-category', [CategoryController::class, 'Create'])->middleware('admin')->name('admin.add_category');
     Route::post('add-category', [CategoryController::class, 'Store'])->middleware('admin')->name('admin.add_category');
+
+    Route::get('edit-category/{category_id}', [CategoryController::class, 'Edit'])->middleware('admin')->name('admin.edit_category');
+
+    Route::put('update-category/{category_id}', [CategoryController::class, 'Update'])->middleware('admin')->name('admin.update_category');
+
+    Route::get('delete-category/{category_id}', [CategoryController::class, 'Destroy'])->middleware('admin')->name('admin.delete_category');
 });
 
 /** -----------------End Admin Routes */
