@@ -12,7 +12,8 @@ class CategoryController extends Controller
 {
     public function Index()
     {
-        return view('admin.category.index');
+        $category=Category::all();
+        return view('admin.category.index',['category'=>$category]);
     } //End Method
 
     public function Create()
