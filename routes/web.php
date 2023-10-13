@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,10 @@ Route::prefix('/admin')->group(function () {
     Route::view('/login', 'admin.login')->name('admin.login_from');
     Route::post('/login', [AdminController::class, 'Login'])->name('admin.login');
     Route::get('/logout', [AdminController::class, 'Logout'])->name('admin.logout');
+
+    Route::get('category', [CategoryController::class, 'Index'])->middleware('admin')->name('admin.view_category');
+    Route::get('add-category', [CategoryController::class, 'Create'])->middleware('admin')->name('admin.add_category');
+    Route::post('add-category', [CategoryController::class, 'Store'])->middleware('admin')->name('admin.add_category');
 });
 
 /** -----------------End Admin Routes */

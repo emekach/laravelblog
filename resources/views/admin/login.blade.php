@@ -1,5 +1,7 @@
 @extends('admin.includes.auth_master')
 
+@section('title', 'Admin Login')
+
 @section('admin_auth')
 <main>
     <div class="container">
