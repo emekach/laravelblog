@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +34,13 @@ Route::prefix('/admin')->group(function () {
     Route::put('update-category/{category_id}', [CategoryController::class, 'Update'])->middleware('admin')->name('admin.update_category');
 
     Route::get('delete-category/{category_id}', [CategoryController::class, 'Destroy'])->middleware('admin')->name('admin.delete_category');
+
+
+    Route::get('posts', [PostController::class, 'index'])->middleware('admin')->name('admin.view_post');
+
+    Route::get('add-post', [PostController::class, 'create'])->middleware('admin')->name('admin.add_post');
+
+    ROute::post('add-post', [PostController::class, 'store'])->middleware('admin')->name('admin.add_post');
 });
 
 /** -----------------End Admin Routes */
