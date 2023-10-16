@@ -48,7 +48,7 @@
 
                 <div class="mb3">
                     <label for="">Decription</label>
-                    <textarea name="description" id="" rows="4" class="form-control"></textarea>
+                    <textarea name="description" id="mySummernote" rows="4" class="form-control"></textarea>
                 </div>
                 @error('description')
 

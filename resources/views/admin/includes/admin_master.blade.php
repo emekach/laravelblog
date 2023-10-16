@@ -11,6 +11,18 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- 
+    Summer note css link -->
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+    <!-- datatable css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 
 <body class="sb-nav-fixed">
@@ -43,7 +55,37 @@
     <script src="{{asset('admin/assets/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('admin/assets/demo/chart-bar-demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+
+
+
+    <script src="{{asset('admin/js/jquery-3.6.0.min.js')}}"></script>
+
     <script src="{{asset('admin/js/datatables-simple-demo.js')}}"></script>
+
+    <!-- summernote js link -->
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#mySummernote").summernote({
+                height: 250,
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        let table = new DataTable('#myTable');
+
+        $(document).ready(function() {
+            $('#myDataTable').DataTable();
+        });
+    </script>
+
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 </body>
 
 </html>

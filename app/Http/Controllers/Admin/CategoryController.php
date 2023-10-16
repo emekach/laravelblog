@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\CategoryFormRequest;
 use App\Http\Requests\Admin\CategoryFormUpdateRequest;
 // use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -35,7 +36,7 @@ class CategoryController extends Controller
 
         // Assign the validated data to the Category attributes
         $category->name = $data['name'];
-        $category->slug = $data['slug'];
+        $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
 
         // Handle image upload
@@ -94,7 +95,7 @@ class CategoryController extends Controller
         $data = $request->validated();
         $category = Category::find($category_id);
         $category->name = $data['name'];
-        $category->slug = $data['slug'];
+        $category->slug = Str::slug($data['slug']);
         $category->description = $data['description'];
 
         if ($request->hasFile('image')) {

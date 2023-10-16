@@ -16,7 +16,7 @@
             @if(Session::has('error'))
             <div class="alert alert-success">{{session::get('error')}}</div>
             @endif
-            <table class="table table-bordered">
+            <table id="myTable" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
