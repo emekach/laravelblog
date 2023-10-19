@@ -47,7 +47,7 @@
                 @enderror
 
                 <div class="mb3">
-                    <label for="">Decription</label>
+                    <label for="">Description</label>
                     <textarea name="description" id="mySummernote" rows="4" class="form-control"></textarea>
                 </div>
                 @error('description')
@@ -55,6 +55,17 @@
                 <div class="alert alert-warning">{{$message}}</div>
 
                 @enderror
+
+                <div class="mb3">
+                    <label for="">Blog Poster</label>
+                    <input type="file" name="poster" class="form-control" required>
+                </div>
+                @error('poster')
+
+                <div class="alert alert-warning">{{$message}}</div>
+
+                @enderror
+
                 <div class="mb3">
                     <label for="">Youtube Iframe Link</label>
                     <input type="text" name="yt_iframe" class="form-control">

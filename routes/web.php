@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Frontend\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,14 +44,19 @@ Route::prefix('/admin')->group(function () {
     Route::get('delete-post/{post_id}', [PostController::class, 'destroy'])->middleware('admin')->name('admin.delete_post');
 
     Route::get('users', [UserController::class, 'index'])->middleware('admin')->name('admin.view_users');
-    Route::get('users/{user_id}',[UserController::class,'edit'])->middleware('admin')->name('admin.edit_users');
+    Route::get('users/{user_id}', [UserController::class, 'edit'])->middleware('admin')->name('admin.edit_users');
 });
 
 /** -----------------End Admin Routes */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/** -----------frontend routes ------ */
+
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
+Route::get('category/{category_slug}', [FrontendController::class, 'viewCategoryPost'])->name('view.categorypost');
+
+/**----------------End frontend route ----- */
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

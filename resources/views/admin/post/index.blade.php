@@ -28,15 +28,13 @@
                 <tbody>
 
                     @if($post->isEmpty())
-                    <tr>
-                        <td colspan="5">No Post found</td>
-                    </tr>
+
                     @else
 
                     @foreach($post as $item)
                     <tr>
                         <td>{{$item->id}}</td>
-                        <td>{{$item->category->name}}</td>
+                        <td>{{optional($item->category)->name}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->status == '1' ? 'Hidden': 'Visible' }}</td>
                         <td>

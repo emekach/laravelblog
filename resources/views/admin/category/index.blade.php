@@ -29,9 +29,7 @@
                 <tbody>
 
                     @if($category->isEmpty())
-                    <tr>
-                        <td colspan="5">No category found</td>
-                    </tr>
+
                     @else
 
                     @foreach($category as $item)

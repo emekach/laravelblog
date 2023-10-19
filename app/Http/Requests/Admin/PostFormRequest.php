@@ -37,6 +37,10 @@ class PostFormRequest extends FormRequest
             'description' => [
                 'required'
             ],
+            'poster' => [
+                'nullable',
+                'mimes:jpeg,jpg,png'
+            ],
             'yt_iframe' => [
                 'nullable',
                 'string'
