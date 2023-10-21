@@ -154,10 +154,14 @@ class CategoryController extends Controller
 
         if ($category) {
             $destination = 'admin/uploads/category/' . $category->image;
+
+
             if (File::exists($destination)) {
                 if (File::delete($destination)) {
+                    $category->posts()->delete();
                     $category->delete();
-                    return redirect()->route('admin.view_category')->with('error', 'Category deleted Successfully');
+
+                    return redirect()->route('admin.view_category')->with('error', 'Category deleted Successfully with its posts');
                 } else {
                     return redirect()->route('admin.view_category')->with('error', 'Failed to delete the file');
                 }

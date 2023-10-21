@@ -13,6 +13,11 @@
     <!-- Title -->
     <title> @yield('title') </title>
 
+    <meta name="description" content="@yield('meta_description')">
+    <meta name="keywords" content="@yield('meta_keyword')">
+
+    <meta name="author" content="Urban CUbe">
+
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.carousel.css')}}">

@@ -1,6 +1,9 @@
 @extends('frontend.inc.master')
 
-@section('title', 'blogpost')
+@section('title', "$category->meta_title")
+@section('meta_description', "$category->meta_description")
+@section('meta_keyword' , "$category->meta_keyword")
+
 
 @section('content')
 
@@ -33,7 +36,7 @@
                 <div class="post-list post-list-style2">
                     <div class="post-list-image">
                         <a href="{{url('category/'.$category->slug.'/'.$item->slug)}}">
-                            <img src="assets/img/blog/30.jpg" alt="">
+                            <img src="{{url('admin/uploads/articles/'.$item->image)}}" alt="">
                         </a>
                     </div>
                     <div class="post-list-content">
@@ -41,13 +44,13 @@
                             <a href="{{url('category/'.$category->slug.'/'.$item->slug)}}">{{$item->name}}</a>
                         </h3>
                         <ul class="entry-meta">
-                            <li class="post-author-img"><img src="assets/img/author/1.jpg" alt=""></li>
+                            <li class="post-author-img"><img src="{{asset('frontend/assets/img/author/1.jpg')}}" alt=""></li>
                             <li class="post-author"> <a href="author.html">{{$item->author->name}}</a></li>
                             <li class="entry-cat"> <a href="{{url('category/'.$category->slug)}}" class="category-style-1 "> <span class="line"></span> {{$item->category->name}}</a></li>
                             <li class="post-date"> <span class="line"></span> {{$item->created_at->format('M j, Y')}}</li>
                         </ul>
                         <div class="post-exerpt">
-                            <p>{!! Str::limit($item->description, 150) !!}
+                            <p>{!! Str::limit($item->description, 550) !!}
 
                             </p>
                         </div>

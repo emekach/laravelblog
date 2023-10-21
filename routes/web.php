@@ -54,6 +54,8 @@ Route::prefix('/admin')->group(function () {
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::get('category/{category_slug}', [FrontendController::class, 'viewCategoryPost'])->name('view.categorypost');
 
+Route::get('category/{category_slug}/{post_slug}',[FrontendController::class,'viewPost']);
+
 /**----------------End frontend route ----- */
 
 

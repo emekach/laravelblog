@@ -59,7 +59,7 @@ class PostController extends Controller
             $filename = time() . '.' . $extension;
             $file->move('admin/uploads/articles/', $filename);
 
-            $post->image = $file;
+            $post->image = $filename;
         }
         $post->yt_iframe = $data['yt_iframe'];
         $post->meta_title = $data['meta_title'];
@@ -119,7 +119,7 @@ class PostController extends Controller
 
             $filename = time() . '.' . $extension;
             $file->move('admin/uploads/articles/', $filename);
-            $post->image->$file;
+            $post->image->$filename;
         }
 
         $post->yt_iframe = $data['yt_iframe'];
@@ -139,7 +139,7 @@ class PostController extends Controller
         $post = Post::find($post_id);
         if ($post) {
             $destination = 'admin/uploads/articles/' . $post->image;
-            if (File::exist($destination)) {
+            if (File::exists($destination)) {
                 if (File::delete($destination)) {
                     $post->delete();
                     return redirect()->route('admin.view_post')->with('error', 'Post deleted successful');

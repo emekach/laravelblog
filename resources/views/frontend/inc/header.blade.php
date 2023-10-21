@@ -4,9 +4,11 @@
          <div class="header-area header-padding2">
              <!--logo-->
              <div class="logo">
-                 <a href="index.html">
-                     <img src="{{asset('frontend/assets/img/logo/logo-dark.png')}}" alt="" class="logo-dark">
-                     <img src="{{asset('frontend/assets/img/logo/logo-white.png')}}" alt="" class="logo-white">
+                 <a href="{{route('frontend.home')}}">
+                     <!-- <img src="{{asset('frontend/assets/img/logo/logo-dark.png')}}" alt="" class="logo-dark">
+                     <img src="{{asset('frontend/assets/img/logo/logo-white.png')}}" alt="" class="logo-white"> -->
+
+                     <h3>UrbanCube</h3>
                  </a>
              </div>
              <!--/-->
