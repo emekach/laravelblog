@@ -59,7 +59,7 @@ Route::prefix('/admin')->group(function () {
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::get('category/{category_slug}', [FrontendController::class, 'viewCategoryPost'])->name('view.categorypost');
 
-Route::get('category/{category_slug}/{post_slug}', [FrontendController::class, 'viewPost']);
+Route::get('category/{category_slug}/{post_slug}', [FrontendController::class, 'viewPost'])->name('post.show');
 
 Route::post('comments', [CommentController::class, 'store'])->name('comments');
 

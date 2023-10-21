@@ -16,13 +16,13 @@
                 </div>
                 <div class="post-overly-content">
                     <div class="entry-cat">
-                        <a href="blog-layout-1.html" class="category-style-2">{{$slider_post_item->category->name}}</a>
+                        <a href="{{url('category/'.$slider_post_item->category->slug.'/'.$slider_post_item->slug) }}" class="category-style-2">{{$slider_post_item->category->name}}</a>
                     </div>
                     <h4 class="entry-title">
-                        <a href="post-single.html">{{$slider_post_item->name}} </a>
+                        <a href="{{url('category/'.$slider_post_item->category->slug.'/'.$slider_post_item->slug) }}">{{$slider_post_item->name}} </a>
                     </h4>
                     <ul class="entry-meta">
-                        <li class="post-author"> <a href="author.html">{{$slider_post_item->author->name}}</a></li>
+                        <li class="post-author"> <a href="#">{{$slider_post_item->author->name}}</a></li>
                         <li class="post-date"> <span class="line"></span> {{$slider_post_item->created_at->format('M j, Y')}}</li>
                     </ul>
                 </div>

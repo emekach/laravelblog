@@ -11,16 +11,16 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $slider_post= Post::where('status','0')
-        ->take('5')
-        ->get();
+        $slider_post = Post::where('status', '0')
+            ->take('5')
+            ->get();
         $latest_post = Post::where('status', '0')
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
         return view('frontend.index', [
             'slider_post' => $slider_post,
-            'latest_post'=>$latest_post
+            'latest_post' => $latest_post
         ]);
     } // End Method
 
@@ -66,9 +66,25 @@ class FrontendController extends Controller
             //     ->orderBy('created_at', 'DESC')
             //     ->get();
 
+            // Find the previous post in the same category
+            $previousPost = Post::where('category_id', $post->category_id)
+                ->where('status', 0)
+                ->where('id', '<', $post->id)
+                ->orderBy('id', 'desc')
+                ->first();
+
+            // Find the next post in the same category
+            $nextPost = Post::where('category_id', $post->category_id)
+                ->where('status', 0)
+                ->where('id', '>', $post->id)
+                ->orderBy('id', 'asc')
+                ->first();
+
             return view('frontend.post.view', [
                 'category' => $category,
-                'post' => $post
+                'post' => $post,
+                'previousPost' => $previousPost,
+                'nextPost' => $nextPost
             ]);
         } else {
             return redirect()->route('frontend.home');

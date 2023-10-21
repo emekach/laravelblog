@@ -176,51 +176,56 @@
                     </div>
                     <!--post-single-Related posts-->
                     <div class="post-single-next-previous">
-                        <div class="row ">
-                            <!--prevvious post-->
+                        <div class="row">
+                            <!--previous post-->
                             <div class="col-md-6">
+                                @if ($previousPost)
                                 <div class="small-post">
                                     <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="assets/img/blog/1.jpg" alt="...">
+                                        <a href="{{ route('post.show', ['category_slug' => $previousPost->category->slug, 'post_slug' => $previousPost->slug]) }}">
+                                            <img src="{{url('admin/uploads/articles/'.$previousPost->image)}}" alt="...">
                                         </a>
                                     </div>
 
                                     <div class="small-post-content">
-                                        <small> <a href="post-single.html"> <i class="las la-arrow-left"></i>Previous post</a></small>
+                                        <small> <a href="{{ route('post.show', ['category_slug' => $previousPost->category->slug, 'post_slug' => $previousPost->slug]) }}"> <i class="las la-arrow-left"></i>Previous post</a></small>
 
                                         <p>
-                                            <a href="post-single.html">You can’t build a reputation on what you are going to do.</a>
+                                            <a href="{{ route('post.show', ['category_slug' => $previousPost->category->slug, 'post_slug' => $previousPost->slug]) }}">{{ $previousPost->name }}</a>
                                         </p>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <!--/-->
 
                             <!--next post-->
                             <div class="col-md-6">
+                                @if ($nextPost)
                                 <div class="small-post">
                                     <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="assets/img/blog/2.jpg" alt="...">
+                                        <a href="{{url('category/'.$nextPost->category->slug.'/'.$nextPost->slug) }}">
+                                            <img src="{{url('admin/uploads/articles/'.$nextPost->image)}}" alt="...">
                                         </a>
                                     </div>
 
                                     <div class="small-post-content">
-                                        <small> <a href="post-single.html">Next post <i class="las la-arrow-right"></i></a> </small>
+                                        <small> <a href="{{url('category/'.$nextPost->category->slug.'/'.$nextPost->slug) }}">Next post <i class="las la-arrow-right"></i></a> </small>
                                         <p>
-                                            <a href="post-single.html">Brand yourself for the career you want, not the job you have</a>
+                                            <a href="{{url('category/'.$nextPost->category->slug.'/'.$nextPost->slug) }}">{{ $nextPost->name }}</a>
                                         </p>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             <!--/-->
                         </div>
                     </div>
+
                     <!--post-single-Ads-->
                     <div class="post-single-ads ">
                         <div class="ads">
-                            <img src="assets/img/ads/ads.jpg" alt="">
+                            <img src="{{asset('frontend/assets/img/ads/ads.jpg')}}" alt="">
                         </div>
                     </div>
 
