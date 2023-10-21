@@ -134,20 +134,27 @@ class PostController extends Controller
         return redirect()->route('admin.view_post')->with('error', 'Post Updated successfully');
     } // End Method
 
-    public function destroy($post_id)
+    public function destroy(Request $request)
     {
-        $post = Post::find($post_id);
+        $post = Post::find($request->delete_post_id);
         if ($post) {
-            $destination = 'admin/uploads/articles/' . $post->image;
-            if (File::exists($destination)) {
-                if (File::delete($destination)) {
-                    $post->delete();
-                    return redirect()->route('admin.view_post')->with('error', 'Post deleted successful');
+            if (!is_null($post->image)) {
+
+                $destination = 'admin/uploads/articles/' . $post->image;
+                if (File::exists($destination)) {
+                    if (File::delete($destination)) {
+                        $post->delete();
+                        return redirect()->route('admin.view_post')->with('error', 'Post deleted successful');
+                    } else {
+                        return redirect()->route('admin.view_post')->with('error', 'Failed to delete the file');
+                    }
                 } else {
-                    return redirect()->route('admin.view_post')->with('error', 'Failed to delete the file');
+                    return redirect()->route('admin.view_post')->with('error', 'File not found');
                 }
             } else {
-                return redirect()->route('admin.view_post')->with('error', 'File not found');
+
+                $post->delete();
+                return redirect()->route('admin.view_post')->with('error', 'Post deleted successful');
             }
         } else {
             return redirect()->route('admin.view_post')->with('error', 'No Post Id found');

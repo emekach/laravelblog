@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
 
 class AdminController extends Controller
 {
     public function Dashboard()
     {
-        return view('admin.index');
+        $category = Category::count();
+        $posts = Post::count();
+        $users = User::count();
+        $admin = Admin::count();
+        return view('admin.index', [
+            'category' => $category,
+            'posts' => $posts,
+            'users' => $users,
+            'admin' => $admin
+        ]);
     }
 
     public function Login(Request $request)

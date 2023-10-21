@@ -147,29 +147,43 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.view_category')->with('error', 'Category Updated Successfully');
     } // End Method
-
-    public function Destroy($category_id)
+    public function destroy(Request $request)
     {
-        $category = Category::find($category_id);
+        $category = Category::find($request->category_delete_id);
 
         if ($category) {
-            $destination = 'admin/uploads/category/' . $category->image;
+            if (!is_null($category->image)) {
+                $destination = 'admin/uploads/category/' . $category->image;
 
+                if (File::exists($destination)) {
+                    if (File::delete($destination)) {
+                        // Check if the category has any associated posts
+                        if ($category->posts()->count() > 0) {
+                            $category->posts()->delete();
+                        }
 
-            if (File::exists($destination)) {
-                if (File::delete($destination)) {
-                    $category->posts()->delete();
-                    $category->delete();
+                        $category->delete();
 
-                    return redirect()->route('admin.view_category')->with('error', 'Category deleted Successfully with its posts');
+                        return redirect()->route('admin.view_category')->with('success', 'Category deleted successfully with its posts.');
+                    } else {
+                        return redirect()->route('admin.view_category')->with('error', 'Failed to delete the file.');
+                    }
                 } else {
-                    return redirect()->route('admin.view_category')->with('error', 'Failed to delete the file');
+                    return redirect()->route('admin.view_category')->with('error', 'File not found.');
                 }
             } else {
-                return redirect()->route('admin.view_category')->with('error', 'File not found');
+                // Handle the case where the image is null (no file to delete)
+                // Optionally, you can still check if the category has associated posts
+                if ($category->posts()->count() > 0) {
+                    $category->posts()->delete();
+                }
+
+                $category->delete();
+
+                return redirect()->route('admin.view_category')->with('success', 'Category deleted successfully with its posts.');
             }
         } else {
-            return redirect()->route('admin.view_category')->with('error', 'No category Id found');
+            return redirect()->route('admin.view_category')->with('error', 'Category not found.');
         }
     }
 }
