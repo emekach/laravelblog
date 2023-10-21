@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\FrontendController;
 
 /*
@@ -59,6 +60,8 @@ Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::get('category/{category_slug}', [FrontendController::class, 'viewCategoryPost'])->name('view.categorypost');
 
 Route::get('category/{category_slug}/{post_slug}', [FrontendController::class, 'viewPost']);
+
+Route::post('comments', [CommentController::class, 'store'])->name('comments');
 
 /**----------------End frontend route ----- */
 

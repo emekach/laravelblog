@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->belongsTo(Admin::class, 'created_by', 'id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'post_id', 'id');
+    }
 }
