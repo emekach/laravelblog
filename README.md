@@ -1,66 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Laravel Blogging Application Design Pattern
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Overview
 
-## About Laravel
+The Laravel Blogging Application facilitates content creation and publication. It includes features for both the frontend and admin side. This design pattern outlines the key steps and components for managing the publication workflow.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+video demo - https://youtu.be/DQHnwqQv9Jk
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Frontend Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. _Display Categories in Navbar_
 
-## Learning Laravel
+    - _Description:_ The application displays categories in the website's navigation bar.
+    - _Implementation:_ Categories are fetched from the database and dynamically rendered in the frontend.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. _Advertising Area on Website_
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    - _Description:_ The website includes an advertising area.
+    - _Implementation:_ The advertising content is managed and displayed at designated sections of the website.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. _Display Latest Posts on Home Page_
 
-## Laravel Sponsors
+    - _Description:_ The homepage showcases the ten latest posts.
+    - _Implementation:_ Latest posts are queried from the database and presented on the homepage.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+4. _Display Categories in Carousel/Slider_
 
-### Premium Partners
+    - _Description:_ Categories are presented in a carousel/slider.
+    - _Implementation:_ Categories are fetched and displayed using a carousel or slider component.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. _View Post_
 
-## Contributing
+    - _Description:_ Users can view individual posts.
+    - _Implementation:_ Clicking on a post's link loads the post's content, comments, and displays advertising content on the right.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. _Add Comment to Post_
 
-## Code of Conduct
+    - _Description:_ Users can leave comments on posts.
+    - _Implementation:_ A comment form is provided below each post, and user-generated comments are stored in the database.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. _SEO-Friendly Website_
+    - _Description:_ The website is optimized for search engines.
+    - _Implementation:_ SEO best practices are followed, including metadata, clean URLs, and responsive design.
 
-## Security Vulnerabilities
+### Admin Side Features
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. _Dashboard Statistics_
 
-## License
+    - _Description:_ The admin dashboard provides statistics on total categories, posts, users, and admins.
+    - _Implementation:_ Data is queried from the database and displayed on the admin dashboard.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. _Categories CRUD with Show and Hide Option_
+
+    - _Description:_ Admins can perform CRUD operations on categories, including showing or hiding them.
+    - _Implementation:_ Categories are managed in the database, and the visibility option is stored.
+
+3. _Show and Hide Categories in Navbar_
+
+    - _Description:_ Admins can control whether categories are displayed in the website's navigation bar.
+    - _Implementation:_ Visibility settings are applied to categories in the frontend.
+
+4. _Posts CRUD with Show and Hide Option_
+
+    - _Description:_ Admins can perform CRUD operations on posts, including showing or hiding them.
+    - _Implementation:_ Posts are managed in the database, and the visibility option is stored.
+
+5. _User Management_
+
+    - _Description:_ Admins can view registered users, access single user profiles, edit user details, and change user roles.
+    - _Implementation:_ User data is fetched from the database, and admins have access to user management features.
+
+6. _Middleware Authentication Security_
+    - _Description:_ Middleware authentication is implemented to enhance security.
+    - _Implementation:_ Middleware is applied to routes to verify user authentication and authorization.
+
+### Technologies Utilized
+
+-   _Laravel Framework:_ Used for web application development.
+-   _MySQL Database:_ Stores application data.
+-   _XAMPP:_ Provides a local development environment.
+-   _Git and GitHub:_ Used for version control and collaboration.
+-   _SEO Tools:_ Applied for optimizing the website for search engines.
+-   _Git Bash:_ A command-line tool
+-   _HTML, CSS, Bootstrap, JavaScript, and jQuery:_ Utilized for frontend development.
