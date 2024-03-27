@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -42,6 +43,33 @@ class AdminController extends Controller
                 ->with('error', 'Invalid Credentials');
         }
     }
+
+    public function UpdatePassword(Request $request)
+    {
+
+        $validateData = $request->validate([
+            'old_password' => ['required', function ($attribute, $value, $fail) {
+                if (!Hash::check($value, Auth::guard('admin')->user()->password)) {
+                    return $fail('The provided old password is incorrect.');
+                }
+            }],
+            'new_password' => 'required|string|min:4',
+            'confirm_password' => 'required|same:new_password'
+        ]);
+
+        $hashedPassword = Auth::guard('admin')->user()->password;
+        if (Hash::check($request->old_password, $hashedPassword)) {
+            $users = Admin::find(Auth::guard('admin')->id());
+            $users->password = bcrypt($request->new_password);
+            $users->save();
+
+
+            return redirect()->back()->with('message', 'Password Updated Successfully');
+        } else {
+
+            return redirect()->back()->with('message', 'Old Password is not match');
+        }
+    } // End Method
 
     public function Logout()
     {

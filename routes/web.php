@@ -29,6 +29,10 @@ Route::prefix('/admin')->group(function () {
     Route::post('/login', [AdminController::class, 'Login'])->name('admin.login');
     Route::get('/logout', [AdminController::class, 'Logout'])->name('admin.logout');
 
+
+    Route::view('/change-password', 'admin.change-password.change_password')->name('admin.change_password');
+    Route::post('/update/password', [AdminController::class, 'UpdatePassword'])->name('update.password');
+
     Route::get('category', [CategoryController::class, 'Index'])->middleware('admin')->name('admin.view_category');
     Route::get('add-category', [CategoryController::class, 'Create'])->middleware('admin')->name('admin.add_category');
     Route::post('add-category', [CategoryController::class, 'Store'])->middleware('admin')->name('admin.add_category');
